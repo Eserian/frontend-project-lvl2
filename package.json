@@ -1,0 +1,40 @@
+{
+  "name": "frontend-project-lvl2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel src --out-dir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eserian/frontend-project-lvl2.git"
+  },
+  "author": "Evgenii Shevchenko",
+  "license": "ISC",
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Eserian/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/Eserian/frontend-project-lvl2#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jest": "^26.2.2"
+  },
+  "dependencies": {
+    "commander": "^6.0.0"
+  }
+}
