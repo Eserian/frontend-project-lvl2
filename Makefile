@@ -6,3 +6,5 @@ lint:
 	npx eslint .
 install:
 	sudo npm link
+test:
+	npx jest
