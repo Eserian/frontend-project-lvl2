@@ -4,3 +4,4 @@
 ![Node CI](https://github.com/Eserian/frontend-project-lvl2/workflows/Node%20CI/badge.svg)
 [![Build Status](https://travis-ci.org/Eserian/frontend-project-lvl2.svg?branch=master)](https://travis-ci.org/Eserian/frontend-project-lvl2)
 [![asciicast](https://asciinema.org/a/vl6LcnxRzIiqFhgO5Gsionyqg.svg)](https://asciinema.org/a/vl6LcnxRzIiqFhgO5Gsionyqg)
+[![asciicast](https://asciinema.org/a/ZJQqy4dy6KLFDrbGmmvQO6Qks.svg)](https://asciinema.org/a/ZJQqy4dy6KLFDrbGmmvQO6Qks)
