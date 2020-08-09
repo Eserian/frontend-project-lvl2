@@ -4,7 +4,7 @@ import { test, expect, beforeAll } from '@jest/globals';
 import genDiff from '../src/index';
 import parser from '../src/parser';
 
-const formats = ['json', 'yml'];
+const formats = ['json', 'yml', 'ini'];
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
