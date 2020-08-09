@@ -1,10 +1,12 @@
 publish:
-	npm publish --dry-run
+	npm publish
 build:
 	npm run build
 lint:
 	npx eslint .
 install:
-	sudo npm link
+	npm ci
 test:
 	npm test
+test-coverage:
+	npm test -- --coverage --coverageProvider=v8
