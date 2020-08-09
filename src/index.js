@@ -9,7 +9,7 @@ export default (obj1, obj2) => {
   const result = keys.reduce((acc, key) => {
     if (_.has(obj1, key) && _.has(obj2, key)) {
       if (obj1[key] === obj2[key]) {
-        return [...acc, `  ${key}: ${obj1[key]}`];
+        return [...acc, `    ${key}: ${obj1[key]}`];
       }
       return [...acc, `- ${key}: ${obj1[key]}`, `+ ${key}: ${obj2[key]}`];
     }
@@ -21,9 +21,5 @@ export default (obj1, obj2) => {
     return [...acc, `- ${key}: ${obj1[key]}`];
   }, []);
 
-  return `
-  {
-    ${result.join('\n    ')}
-  }
-  `;
+  return `{\n${result.join('\n  ')}\n}`;
 };

@@ -7,4 +7,4 @@ lint:
 install:
 	sudo npm link
 test:
-	npx jest
+	npm test
