@@ -11,15 +11,15 @@ export default (obj1, obj2) => {
       if (obj1[key] === obj2[key]) {
         return [...acc, `    ${key}: ${obj1[key]}`];
       }
-      return [...acc, `- ${key}: ${obj1[key]}`, `+ ${key}: ${obj2[key]}`];
+      return [...acc, `  - ${key}: ${obj1[key]}`, `  + ${key}: ${obj2[key]}`];
     }
 
     if (!_.has(obj1, key)) {
-      return [...acc, `+ ${key}: ${obj2[key]}`];
+      return [...acc, `  + ${key}: ${obj2[key]}`];
     }
 
-    return [...acc, `- ${key}: ${obj1[key]}`];
+    return [...acc, `  - ${key}: ${obj1[key]}`];
   }, []);
 
-  return `{\n${result.join('\n  ')}\n}`;
+  return `{\n${result.join('\n')}\n}`;
 };
