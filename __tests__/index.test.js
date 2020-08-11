@@ -3,8 +3,9 @@ import fs from 'fs';
 import { test, expect, beforeAll } from '@jest/globals';
 import genDiff from '../src/index';
 import parser from '../src/parser';
+import formatter from '../src/stylish';
 
-const formats = ['json', 'yml', 'ini'];
+const formats = ['json', 'ini', 'yml'];
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
@@ -18,6 +19,7 @@ beforeAll(() => {
 test.each(formats)('%s', (format) => {
   const before = parser(format, readFile(`before.${format}`));
   const after = parser(format, readFile(`after.${format}`));
+  const actual = formatter(genDiff(before, after));
 
-  expect(genDiff(before, after)).toBe(expected);
+  expect(actual).toBe(expected);
 });
