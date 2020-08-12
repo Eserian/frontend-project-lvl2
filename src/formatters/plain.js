@@ -25,7 +25,7 @@ const stringify = (value) => {
   return action(value);
 };
 
-const mapped = {
+const map = {
   add: (key, value) => `Property '${key}' was added with value: ${stringify(value)}`,
   remove: (key) => `Property '${key}' was removed`,
   updated: (key, { oldValue, newValue }) => `Property '${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`,
@@ -36,7 +36,7 @@ const render = (diff, parent = null) => {
   const rendered = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => ({ ...node, key: parent ? `${parent}.${node.key}` : node.key }))
-    .map(({ key, children, type }) => mapped[type](key, children, render));
+    .map(({ key, children, type }) => map[type](key, children, render));
 
   return rendered.join('\n');
 };

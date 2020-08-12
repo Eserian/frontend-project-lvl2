@@ -10,7 +10,7 @@ const stringify = (item, dept) => {
   return `{\n${result.join('\n')}\n${makeIndent(dept)}}`;
 };
 
-const mapped = {
+const map = {
   add: (key, value, dept) => `${makeIndent(dept)}+ ${key}: ${stringify(value, dept + 1)}`,
   remove: (key, value, dept) => `${makeIndent(dept)}- ${key}: ${stringify(value, dept + 1)}`,
   updated: (key, { oldValue, newValue }, dept) => `${makeIndent(dept)}- ${key}: ${stringify(oldValue, dept + 1)}\n${makeIndent(dept)}+ ${key}: ${stringify(newValue, dept + 1)}`,
@@ -19,7 +19,7 @@ const mapped = {
 };
 
 const render = (diff, dept = 1) => {
-  const rendered = diff.map(({ key, children, type }) => mapped[type](key, children, dept, render));
+  const rendered = diff.map(({ key, children, type }) => map[type](key, children, dept, render));
   return `{\n${rendered.join('\n')}\n${makeIndent(dept - 1)}}`;
 };
 
