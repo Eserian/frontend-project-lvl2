@@ -3,19 +3,15 @@
 import path from 'path';
 import fs from 'fs';
 import { Command } from 'commander';
-import genDiff from '../index';
+import genDiff from '../buildDiff';
 import parser from '../parser';
-import stylish from '../stylish';
+import getFormatter from '../formatters/index';
 
 const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
 const readFile = (filepath) => fs.readFileSync(getFullPath(filepath), 'utf-8');
 const getFileType = (filepath) => path.extname(filepath).slice(1);
 
 const program = new Command();
-
-const formatters = {
-  stylish,
-};
 
 program
   .version('0.0.1')
@@ -26,7 +22,7 @@ program
     const data1 = parser(getFileType(filepath1), readFile(filepath1));
     const data2 = parser(getFileType(filepath2), readFile(filepath2));
 
-    console.log(formatters[program.format](genDiff(data1, data2)));
+    console.log(getFormatter(program.format)(genDiff(data1, data2)));
   });
 
 program.parse(process.argv);
