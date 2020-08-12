@@ -4,7 +4,7 @@ import _ from 'lodash';
 const mapForStringify = [
   {
     check: (value) => _.isObject(value),
-    action: (_value) => '[complex value]',
+    action: () => '[complex value]',
   },
   {
     check: (value) => _.isBoolean(value),
@@ -34,9 +34,9 @@ const mapped = {
 
 const render = (diff, parent = null) => {
   const rendered = diff
-    .filter((item) => item.type !== 'unchanged')
-    .map((item) => ({ ...item, key: parent ? `${parent}.${item.key}` : item.key }))
-    .map(({ key, value, type }) => mapped[type](key, value, render));
+    .filter((node) => node.type !== 'unchanged')
+    .map((node) => ({ ...node, key: parent ? `${parent}.${node.key}` : node.key }))
+    .map(({ key, children, type }) => mapped[type](key, children, render));
 
   return rendered.join('\n');
 };

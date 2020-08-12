@@ -6,7 +6,7 @@ const map = [
     action: (obj1, obj2, key, f) => ({
       type: 'nested',
       key,
-      value: f(obj1[key], obj2[key]),
+      children: f(obj1[key], obj2[key]),
     }),
   },
   {
@@ -15,12 +15,12 @@ const map = [
       ? {
         type: 'unchanged',
         key,
-        value: obj1[key],
+        children: obj1[key],
       }
       : {
         type: 'updated',
         key,
-        value: {
+        children: {
           oldValue: obj1[key],
           newValue: obj2[key],
         },
@@ -31,7 +31,7 @@ const map = [
     action: (_obj1, obj2, key) => ({
       type: 'add',
       key,
-      value: obj2[key],
+      children: obj2[key],
     }),
   },
   {
@@ -39,7 +39,7 @@ const map = [
     action: (obj1, _obj2, key) => ({
       type: 'remove',
       key,
-      value: obj1[key],
+      children: obj1[key],
     }),
   },
 ];

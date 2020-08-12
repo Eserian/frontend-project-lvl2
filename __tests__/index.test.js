@@ -1,11 +1,9 @@
 import path from 'path';
 import fs from 'fs';
 import { test, expect, beforeAll } from '@jest/globals';
-import genDiff from '../src/buildDiff';
-import parser from '../src/parser';
-import getFormatter from '../src/formatters/index';
+import gendiff from '../src/index';
 
-const formats = ['json', 'ini', 'yml'];
+const formats = ['json', 'yml', 'ini'];
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
@@ -21,12 +19,12 @@ beforeAll(() => {
 });
 
 test.each(formats)('%s', (format) => {
-  const before = parser(format, readFile(`before.${format}`));
-  const after = parser(format, readFile(`after.${format}`));
+  const beforeFilePath = getFixturePath(`before.${format}`);
+  const afterFilePath = getFixturePath(`after.${format}`);
 
-  const actualStylish = getFormatter('stylish')(genDiff(before, after));
-  const actualPlain = getFormatter('plain')(genDiff(before, after));
-  const actualJson = getFormatter('json')(genDiff(before, after));
+  const actualStylish = gendiff(beforeFilePath, afterFilePath, 'stylish');
+  const actualPlain = gendiff(beforeFilePath, afterFilePath, 'plain');
+  const actualJson = gendiff(beforeFilePath, afterFilePath, 'json');
 
   expect(actualStylish).toBe(expectedStylish);
   expect(actualPlain).toBe(expectedPlain);

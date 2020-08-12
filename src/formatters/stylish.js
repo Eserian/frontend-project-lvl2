@@ -19,7 +19,7 @@ const mapped = {
 };
 
 const render = (diff, dept = 1) => {
-  const rendered = diff.map(({ key, value, type }) => mapped[type](key, value, dept, render));
+  const rendered = diff.map(({ key, children, type }) => mapped[type](key, children, dept, render));
   return `{\n${rendered.join('\n')}\n${makeIndent(dept - 1)}}`;
 };
 
