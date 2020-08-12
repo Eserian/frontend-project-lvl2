@@ -4,7 +4,7 @@ const map = [
   {
     check: (obj1, obj2, key) => _.isObject(obj1[key]) && _.isObject(obj2[key]),
     action: (obj1, obj2, key, f) => ({
-      type: 'object',
+      type: 'nested',
       key,
       value: f(obj1[key], obj2[key]),
     }),

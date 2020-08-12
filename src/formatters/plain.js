@@ -14,6 +14,10 @@ const mapForStringify = [
     check: (value) => _.isString(value),
     action: (value) => `'${value}'`,
   },
+  {
+    check: (value) => _.isNumber(value),
+    action: (value) => value,
+  },
 ];
 
 const stringify = (value) => {
@@ -25,7 +29,7 @@ const mapped = {
   add: (key, value) => `Property '${key}' was added with value: ${stringify(value)}`,
   remove: (key) => `Property '${key}' was removed`,
   updated: (key, { oldValue, newValue }) => `Property '${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`,
-  object: (key, value, f) => f(value, key),
+  nested: (key, value, f) => f(value, key),
 };
 
 const render = (diff, parent = null) => {
