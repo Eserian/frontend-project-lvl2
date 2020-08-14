@@ -2,15 +2,15 @@ import stylish from './stylish';
 import plain from './plain';
 import json from './json';
 
-const formatters = {
+const formattersMap = {
   stylish,
   plain,
   json,
 };
 
 export default (format) => {
-  if (!formatters[format]) {
+  if (!formattersMap[format]) {
     throw new Error(`Unknown output format: ${format}`);
   }
-  return formatters[format];
+  return formattersMap[format];
 };
