@@ -29,7 +29,7 @@ const map = [
   {
     check: (obj1, obj2, key) => !_.has(obj1, key) && _.has(obj2, key),
     action: (_obj1, obj2, key) => ({
-      type: 'add',
+      type: 'added',
       key,
       children: obj2[key],
     }),
@@ -37,7 +37,7 @@ const map = [
   {
     check: (obj1, obj2, key) => _.has(obj1, key) && !_.has(obj2, key),
     action: (obj1, _obj2, key) => ({
-      type: 'remove',
+      type: 'removed',
       key,
       children: obj1[key],
     }),

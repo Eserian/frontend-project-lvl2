@@ -2,17 +2,24 @@ import yaml from 'js-yaml';
 import ini from 'ini';
 import _ from 'lodash';
 
-const updateIniParser = (object) => _.mapValues(object, (value) => {
+const normalizeNumbers = (object) => _.mapValues(object, (value) => {
   if (!_.isObject(value)) {
     return parseFloat(value) || value;
   }
-  return updateIniParser(value);
+  return normalizeNumbers(value);
 });
+
+const iniParse = (data) => normalizeNumbers(ini.parse(data));
 
 const mapping = {
   json: JSON.parse,
   yml: yaml.safeLoad,
-  ini: (data) => updateIniParser(ini.parse(data)),
+  ini: iniParse,
 };
 
-export default (type, data) => mapping[type](data);
+export default (type, data) => {
+  if (!mapping[type]) {
+    throw new Error(`Unsupported file extension: ${type}`);
+  }
+  return mapping[type](data);
+};

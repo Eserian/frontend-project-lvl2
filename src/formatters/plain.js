@@ -25,9 +25,9 @@ const stringify = (value) => {
   return action(value);
 };
 
-const map = {
-  add: (key, value) => `Property '${key}' was added with value: ${stringify(value)}`,
-  remove: (key) => `Property '${key}' was removed`,
+const typeMapping = {
+  added: (key, value) => `Property '${key}' was added with value: ${stringify(value)}`,
+  removed: (key) => `Property '${key}' was removed`,
   updated: (key, { oldValue, newValue }) => `Property '${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`,
   nested: (key, value, f) => f(value, key),
 };
@@ -36,7 +36,7 @@ const render = (diff, parent = null) => {
   const rendered = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => ({ ...node, key: parent ? `${parent}.${node.key}` : node.key }))
-    .map(({ key, children, type }) => map[type](key, children, render));
+    .map(({ key, children, type }) => typeMapping[type](key, children, render));
 
   return rendered.join('\n');
 };
