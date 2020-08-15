@@ -13,7 +13,7 @@ const stringify = (item, dept) => {
 const typeMapping = {
   added: (key, value, dept) => `${makeIndent(dept)}+ ${key}: ${stringify(value, dept + 1)}`,
   removed: (key, value, dept) => `${makeIndent(dept)}- ${key}: ${stringify(value, dept + 1)}`,
-  updated: (key, { oldValue, newValue }, dept) => `${makeIndent(dept)}- ${key}: ${stringify(oldValue, dept + 1)}\n${makeIndent(dept)}+ ${key}: ${stringify(newValue, dept + 1)}`,
+  changed: (key, { oldValue, newValue }, dept) => `${makeIndent(dept)}- ${key}: ${stringify(oldValue, dept + 1)}\n${makeIndent(dept)}+ ${key}: ${stringify(newValue, dept + 1)}`,
   unchanged: (key, value, dept) => `${makeIndent(dept)}  ${key}: ${stringify(value, dept + 1)}`,
   nested: (key, value, dept, f) => `${makeIndent(dept)}  ${key}: ${f(value, dept + 2)}`,
 };

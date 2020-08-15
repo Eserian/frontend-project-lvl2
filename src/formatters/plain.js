@@ -28,7 +28,7 @@ const stringify = (value) => {
 const typeMapping = {
   added: (key, value) => `Property '${key}' was added with value: ${stringify(value)}`,
   removed: (key) => `Property '${key}' was removed`,
-  updated: (key, { oldValue, newValue }) => `Property '${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`,
+  changed: (key, { oldValue, newValue }) => `Property '${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`,
   nested: (key, value, f) => f(value, key),
 };
 

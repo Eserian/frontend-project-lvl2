@@ -9,12 +9,12 @@ const normalizeNumbers = (object) => _.mapValues(object, (value) => {
   return normalizeNumbers(value);
 });
 
-const iniParse = (data) => normalizeNumbers(ini.parse(data));
+const parseIni = (data) => normalizeNumbers(ini.parse(data));
 
 const mapping = {
   json: JSON.parse,
   yml: yaml.safeLoad,
-  ini: iniParse,
+  ini: parseIni,
 };
 
 export default (type, data) => {

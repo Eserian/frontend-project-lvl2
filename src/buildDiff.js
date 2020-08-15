@@ -18,7 +18,7 @@ const map = [
         children: obj1[key],
       }
       : {
-        type: 'updated',
+        type: 'changed',
         key,
         children: {
           oldValue: obj1[key],
