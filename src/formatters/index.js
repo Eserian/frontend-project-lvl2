@@ -1,12 +1,12 @@
-import stylishFormatter from './stylish';
-import plainFormatter from './plain';
+import stylishFormat from './stylish';
+import plainFormat from './plain';
 
-const jsonFormatter = (diff) => JSON.stringify(diff);
+const jsonFormat = (diff) => JSON.stringify(diff);
 
 const formattersMap = {
-  stylish: stylishFormatter,
-  plain: plainFormatter,
-  json: jsonFormatter,
+  stylish: stylishFormat,
+  plain: plainFormat,
+  json: jsonFormat,
 };
 
 export default (format) => {
@@ -15,5 +15,6 @@ export default (format) => {
   if (!formatter) {
     throw new Error(`Unknown output format: ${format}`);
   }
+
   return formatter;
 };
