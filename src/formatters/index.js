@@ -1,12 +1,12 @@
-import stylishFormat from './stylish';
-import plainFormat from './plain';
+import formatStylish from './stylish';
+import formatPlain from './plain';
 
-const jsonFormat = (diff) => JSON.stringify(diff);
+const formatJson = (diff) => JSON.stringify(diff);
 
 const formattersMap = {
-  stylish: stylishFormat,
-  plain: plainFormat,
-  json: jsonFormat,
+  stylish: formatStylish,
+  plain: formatPlain,
+  json: formatJson,
 };
 
 export default (format) => {

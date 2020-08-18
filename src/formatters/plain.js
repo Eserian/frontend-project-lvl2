@@ -3,19 +3,19 @@ import _ from 'lodash';
 
 const mapForStringify = [
   {
-    check: (value) => _.isObject(value),
+    check: _.isObject,
     action: () => '[complex value]',
   },
   {
-    check: (value) => _.isBoolean(value),
+    check: _.isBoolean,
     action: (value) => value,
   },
   {
-    check: (value) => _.isString(value),
+    check: _.isString,
     action: (value) => `'${value}'`,
   },
   {
-    check: (value) => _.isNumber(value),
+    check: _.isNumber,
     action: (value) => value,
   },
 ];
