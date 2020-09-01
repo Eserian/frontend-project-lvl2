@@ -14,7 +14,7 @@ const map = [
     action: (obj1, obj2, key) => ({
       type: 'unchanged',
       key,
-      children: obj1[key],
+      value: obj1[key],
     }),
   },
   {
@@ -22,7 +22,7 @@ const map = [
     action: (obj1, obj2, key) => ({
       type: 'changed',
       key,
-      children: {
+      value: {
         oldValue: obj1[key],
         newValue: obj2[key],
       },
@@ -33,7 +33,7 @@ const map = [
     action: (_obj1, obj2, key) => ({
       type: 'added',
       key,
-      children: obj2[key],
+      value: obj2[key],
     }),
   },
   {
@@ -41,7 +41,7 @@ const map = [
     action: (obj1, _obj2, key) => ({
       type: 'removed',
       key,
-      children: obj1[key],
+      value: obj1[key],
     }),
   },
 ];

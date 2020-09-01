@@ -36,7 +36,12 @@ const render = (diff, parent = null) => {
   const rendered = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => ({ ...node, key: parent ? `${parent}.${node.key}` : node.key }))
-    .map(({ key, children, type }) => typeMapping[type](key, children, render));
+    .map((node) => {
+      if (_.has(node, 'children')) {
+        return typeMapping[node.type](node.key, node.children, render);
+      }
+      return typeMapping[node.type](node.key, node.value, render);
+    });
 
   return rendered.join('\n');
 };
