@@ -21,7 +21,7 @@ const typeMapping = {
 const render = (diff, dept = 1) => {
   const rendered = diff.map((node) => {
     if (_.has(node, 'children')) {
-      return typeMapping[node.type](node.key, node.children, dept,render);
+      return typeMapping[node.type](node.key, node.children, dept, render);
     }
     return typeMapping[node.type](node.key, node.value, dept, render);
   });
