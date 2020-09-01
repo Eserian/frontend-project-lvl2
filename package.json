@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eserian/frontend-project-lvl2.git"
+    "url": "git+https://github.com/Eserian/gendiff.git"
   },
   "author": "Evgenii Shevchenko",
   "license": "ISC",
@@ -21,9 +21,9 @@
     "gendiff": "dist/bin/gendiff.js"
   },
   "bugs": {
-    "url": "https://github.com/Eserian/frontend-project-lvl2/issues"
+    "url": "https://github.com/Eserian/gendiffissues"
   },
-  "homepage": "https://github.com/Eserian/frontend-project-lvl2#readme",
+  "homepage": "https://github.com/Eserian/gendiff#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
