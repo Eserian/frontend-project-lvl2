@@ -11,20 +11,16 @@ const stringify = (item, dept) => {
 };
 
 const typeMapping = {
-  added: (key, value, dept) => `${indent(dept)}+ ${key}: ${stringify(value, dept + 1)}`,
-  removed: (key, value, dept) => `${indent(dept)}- ${key}: ${stringify(value, dept + 1)}`,
-  changed: (key, { oldValue, newValue }, dept) => `${indent(dept)}- ${key}: ${stringify(oldValue, dept + 1)}\n${indent(dept)}+ ${key}: ${stringify(newValue, dept + 1)}`,
-  unchanged: (key, value, dept) => `${indent(dept)}  ${key}: ${stringify(value, dept + 1)}`,
-  nested: (key, value, dept, f) => `${indent(dept)}  ${key}: ${f(value, dept + 2)}`,
+  added: ({ key, value }, dept) => `${indent(dept)}+ ${key}: ${stringify(value, dept + 1)}`,
+  removed: ({ key, value }, dept) => `${indent(dept)}- ${key}: ${stringify(value, dept + 1)}`,
+  changed: ({ key, value: { oldValue, newValue } }, dept) => `${indent(dept)}- ${key}: ${stringify(oldValue, dept + 1)}\n${indent(dept)}+ ${key}: ${stringify(newValue, dept + 1)}`,
+  unchanged: ({ key, value }, dept) => `${indent(dept)}  ${key}: ${stringify(value, dept + 1)}`,
+  nested: ({ key, children }, dept, f) => `${indent(dept)}  ${key}: ${f(children, dept + 2)}`,
 };
 
 const render = (diff, dept = 1) => {
-  const rendered = diff.map((node) => {
-    if (_.has(node, 'children')) {
-      return typeMapping[node.type](node.key, node.children, dept, render);
-    }
-    return typeMapping[node.type](node.key, node.value, dept, render);
-  });
+  const rendered = diff.map((node) => typeMapping[node.type](node, dept, render));
+
   return `{\n${rendered.join('\n')}\n${indent(dept - 1)}}`;
 };
 
