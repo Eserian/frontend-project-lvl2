@@ -5,7 +5,7 @@
 
 A program for comparing two configuration files and showing the difference between them.
 
-## Instal
+## Install
     $ sudo npm install -g ese-gendiff
 
 ## Usage
