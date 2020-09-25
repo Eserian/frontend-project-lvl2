@@ -18,4 +18,3 @@ A program for comparing two configuration files and showing the difference betwe
     -V, --version        output the version number
     -h, --help           output usage information
     -f, --format [type]  Output format
-    ```
